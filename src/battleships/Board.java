@@ -13,6 +13,10 @@ public class Board {
     private final int BOARD_LENGTH = 10;
     
     public Board(){
+        initialiseBoard();
+    }
+    
+    public void initialiseBoard(){
         this.fleet = new Ship[SHIP_AMOUNT];
         this.fleet[0] = new Carrier();
         this.fleet[1] = new Battleship();
@@ -32,4 +36,27 @@ public class Board {
         
         placer.placeShips(grid, fleet);
     }
+
+    /**
+     * @return the fleet
+     */
+    public Ship[] getFleet() {
+        return fleet;
+    }
+
+    /**
+     * @return the grid
+     */
+    public Point[][] getGrid() {
+        return grid;
+    }
+
+    /**
+     * @return the BOARD_LENGTH
+     */
+    public int getBOARD_LENGTH() {
+        return BOARD_LENGTH;
+    }
+    
+    
 }
