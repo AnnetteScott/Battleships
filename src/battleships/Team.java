@@ -7,7 +7,7 @@ package battleships;
 public abstract class Team {
     private final Board board;
     private final String name;
-    private final int score;
+    private int score;
 
     public Team(String name, int score){
         this.name = name;
@@ -36,5 +36,12 @@ public abstract class Team {
         return score;
     }
     
+    /**
+     * Update the score
+     * @param points 
+     */
+    public void updateScore(int points){
+        this.score += points;
+    }
     
 }
