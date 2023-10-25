@@ -1,6 +1,5 @@
 package battleships.Ships;
 
-import battleships.Point;
 import battleships.Ship;
 
 /**
