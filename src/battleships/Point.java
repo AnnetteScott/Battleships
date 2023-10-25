@@ -9,10 +9,10 @@ public class Point {
     private final int y;
     private PointState state;
     
-    public Point(int x, int y, PointState state){
+    public Point(int x, int y){
         this.x = x;
         this.y = y;
-        this.state = state;
+        this.state = PointState.Empty;
     }
 
     /**
