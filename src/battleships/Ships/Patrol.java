@@ -8,7 +8,7 @@ import battleships.Ship;
  * @author gmt3870
  */
 public class Patrol extends Ship {
-    public Patrol(Point[] location){
-        super(2, location);
+    public Patrol(){
+        super(2);
     }
 }

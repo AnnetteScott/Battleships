@@ -8,7 +8,7 @@ import battleships.Ship;
  * @author Annet
  */
 public class Submarine extends Ship {
-    public Submarine(Point[] location){
-        super(3, location);
+    public Submarine(){
+        super(3);
     }
 }

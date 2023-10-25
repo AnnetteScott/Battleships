@@ -6,11 +6,11 @@ package battleships;
  */
 public abstract class Ship {
     private final int size;
-    private final Point[] location;
+    private Point[] location;
 
-    public Ship(int size, Point[] location){
+    public Ship(int size){
         this.size = size;
-        this.location = location;
+        this.location = new Point[size];
     }
     
     /**
@@ -27,6 +27,17 @@ public abstract class Ship {
         return location;
     }
     
+    /**
+     * @param location the location to set
+     */
+    public void setLocation(Point[] location) {
+        this.location = location;
+    }
+    
+    /**
+     * Whether the ship has been sunk
+     * @return Boolean
+     */
     public boolean isSunk(){
         boolean sunk = true;
         for(Point point : location){

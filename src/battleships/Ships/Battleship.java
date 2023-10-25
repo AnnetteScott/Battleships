@@ -9,7 +9,7 @@ import battleships.Ship;
  */
 public class Battleship extends Ship{
 
-    public Battleship(Point[] location){
-        super(4, location);
+    public Battleship(){
+        super(4);
     }
 }
