@@ -42,25 +42,24 @@ public class Round {
         enemyWaters.revalidate();
         enemyWaters.drawBoard();
         
+        if(this.enemyBoard.allShipsSunk()){
+            this.playerTurn = false;
+            System.out.println("Player Wins");
+            return;
+        }
+        
         this.playerTurn = false;
         this.bot.takeTurn(playerBoard);
         playerFleet.removeAll();
         playerFleet.revalidate();
         playerFleet.drawBoard();
         
-        
-        System.out.println(this.playerBoard.allShipsSunk());
-        
         if(this.playerBoard.allShipsSunk()){
             this.playerTurn = false;
             System.out.println("Bot Wins");
             return;
         }
-        else if(this.enemyBoard.allShipsSunk()){
-            this.playerTurn = false;
-            System.out.println("Player Wins");
-            return;
-        }
+        
         this.playerTurn = true;
     }
     
