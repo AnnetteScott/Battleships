@@ -2,9 +2,12 @@ package battleships.UI;
 
 import battleships.Board;
 import battleships.PointState;
+import battleships.RoundManager;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -19,13 +22,20 @@ public class DisplayBoard extends JPanel{
     private int BOARD_SIZE;
     private Board board;
     private boolean isPlayer;
+    private RoundManager roundMng;
 
-    public DisplayBoard(int BOARD_SIZE, Board board, boolean isPlayer){
+    public DisplayBoard(RoundManager roundMng, boolean isPlayer){
+        this.roundMng = roundMng;
+        if(isPlayer){
+            this.board = roundMng.getCurrentRound().getPlayerBoard();
+        }else{
+            this.board = roundMng.getCurrentRound().getEnemyBoard();
+        }
+        this.isPlayer = isPlayer;
+        this.BOARD_SIZE = this.board.getBOARD_LENGTH();
+        
         setLayout(new GridLayout(BOARD_SIZE + 2, BOARD_SIZE + 2));
         setSize(300, 300);
-        this.BOARD_SIZE = BOARD_SIZE;
-        this.board = board;
-        this.isPlayer = isPlayer;
         
         drawBoard();
     }
@@ -52,17 +62,36 @@ public class DisplayBoard extends JPanel{
             add(num);
             
             for(int x = 0; x < BOARD_SIZE; x++){
-                JLabel cell = new JLabel();
+                JButton cell = new JButton();
                 cell.setOpaque(true);
 
-                if(board.getGrid()[x][y].getState() == PointState.Hit){
+                if(board.getGrid()[x][y].getState().equals(PointState.Hit)){
                     cell.setBackground(Color.RED);
-                }else if(board.getGrid()[x][y].getState() == PointState.Miss){
+                    cell.setEnabled(false);
+                }else if(board.getGrid()[x][y].getState().equals(PointState.Miss)){
                     cell.setBackground(Color.GRAY);
-                }else if(board.getGrid()[x][y].getState() == PointState.Ship && isPlayer){
+                    cell.setEnabled(false);
+                }else if(board.getGrid()[x][y].getState().equals(PointState.Ship) && isPlayer){
                     cell.setBackground(Color.BLACK);
                 }else{
                     cell.setBackground(Color.WHITE);
+                }
+                
+                if(!isPlayer){
+                    final int row = x;
+                    final int col = y;
+                    cell.addActionListener((ActionEvent e) -> {
+                        if(!roundMng.getCurrentRound().isPlayerTurn()){
+                            return;
+                        }
+                        boolean validShot = board.fireShot(row, col);
+                        if(validShot){
+                            roundMng.getCurrentRound().nextTurn();
+                        }
+                        
+                    });
+                }else {
+                    cell.setEnabled(false);
                 }
                 
                 cell.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
