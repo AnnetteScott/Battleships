@@ -1,6 +1,7 @@
 package battleships;
 
 import battleships.GUI.DisplayBoard;
+import javax.swing.JLabel;
 
 /**
  *
@@ -14,6 +15,7 @@ public class Round {
     private boolean playerTurn;
     private final Bot bot;
     private final Player player;
+    private JLabel whoWon;
     
     public Round(Bot bot, Player player){
         this.playerTurn = true;
@@ -26,6 +28,10 @@ public class Round {
     public void setDisplayBoards(DisplayBoard enemyWaters, DisplayBoard playerFleet){
         this.enemyWaters = enemyWaters;
         this.playerFleet = playerFleet;
+    }
+    
+    public void setWhoWonLabel(JLabel label){
+        this.whoWon = label;
     }
     
     public void startRound(){
@@ -44,6 +50,7 @@ public class Round {
         
         if(this.enemyBoard.allShipsSunk()){
             this.playerTurn = false;
+            this.whoWon.setText("Player Wins!");
             System.out.println("Player Wins");
             return;
         }
@@ -56,6 +63,7 @@ public class Round {
         
         if(this.playerBoard.allShipsSunk()){
             this.playerTurn = false;
+            this.whoWon.setText("Bot Wins!");
             System.out.println("Bot Wins");
             return;
         }

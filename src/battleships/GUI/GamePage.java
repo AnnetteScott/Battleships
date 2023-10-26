@@ -11,11 +11,12 @@ import javax.swing.*;
 public class GamePage extends JPanel{
     
     public GamePage(RoundManager roundMng){
-        setLayout(new FlowLayout(FlowLayout.CENTER, 30, 20));
+        setLayout(new BorderLayout());
         
         JPanel header = new JPanel();
-        header.setSize(1200, 40);
-        header.setPreferredSize(new Dimension(1200, 40));
+        header.setLayout(new BorderLayout());
+        
+        JPanel buttons = new JPanel();
         
         JButton menuButton = new JButton("Menu");
         menuButton.addActionListener(new ActionListener() {
@@ -26,12 +27,12 @@ public class GamePage extends JPanel{
             }
         });
         menuButton.setFocusPainted(false);
-        header.add(menuButton);
+        buttons.add(menuButton);
         
         DisplayBoard enemyWaters = new DisplayBoard(roundMng, false);
         DisplayBoard playerFleet = new DisplayBoard(roundMng, true);
         roundMng.getCurrentRound().setDisplayBoards(enemyWaters, playerFleet);
-
+        
         JButton restart = new JButton("Restart");
         restart.addActionListener(new ActionListener() {
             @Override
@@ -47,22 +48,30 @@ public class GamePage extends JPanel{
             }
         });
         restart.setFocusPainted(false);
-        header.add(restart);
-        
-        add(header);
-        
-        JPanel titles = new JPanel();
-        titles.setLayout(new GridLayout(1, 2));
-        titles.setSize(1200, 40);
-        titles.setPreferredSize(new Dimension(1200, 40));
+        buttons.add(restart);
+                
+        JPanel titles = new JPanel(new GridLayout(1, 2));
         JLabel enemyLabel = new JLabel("Enemy Waters", SwingConstants.CENTER);
         JLabel playerFleetLabel = new JLabel("Your Fleet", SwingConstants.CENTER);
         titles.add(enemyLabel);
         titles.add(playerFleetLabel);
         
-        add(titles);
+        JLabel whoWon = new JLabel("");
+        whoWon.setHorizontalAlignment(JLabel.CENTER);
+        whoWon.setFont(new Font("Serif", Font.PLAIN, 30));
+        whoWon.setForeground(Color.RED);
+        roundMng.getCurrentRound().setWhoWonLabel(whoWon);
         
-        add(enemyWaters);
-        add(playerFleet);
+        header.add(buttons, BorderLayout.NORTH);
+        header.add(titles, BorderLayout.CENTER);
+        header.add(whoWon, BorderLayout.SOUTH);
+        add(header, BorderLayout.NORTH);
+        
+        JPanel boards = new JPanel();
+        boards.add(enemyWaters);
+        boards.add(playerFleet);
+        
+        add(boards, BorderLayout.CENTER);
+        
     }
 }
