@@ -1,6 +1,6 @@
 package battleships;
 
-import battleships.UI.DisplayBoard;
+import battleships.GUI.DisplayBoard;
 
 /**
  *

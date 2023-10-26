@@ -1,4 +1,4 @@
-package battleships.UI;
+package battleships.GUI;
 
 import battleships.Board;
 import battleships.PointState;
