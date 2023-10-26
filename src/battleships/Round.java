@@ -15,7 +15,7 @@ public class Round {
     private boolean playerTurn;
     private final Bot bot;
     private final Player player;
-    private JLabel whoWon;
+    private JLabel whoWon = null;
     
     public Round(Bot bot, Player player){
         this.playerTurn = true;
@@ -38,6 +38,9 @@ public class Round {
         this.getPlayerBoard().initialiseBoard();
         this.getEnemyBoard().initialiseBoard();
         this.playerTurn = true;
+        if(this.whoWon != null){
+            this.whoWon.setText("");
+        }
     }
     
     /**
