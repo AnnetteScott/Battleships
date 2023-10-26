@@ -26,11 +26,11 @@ public class ShipPlacer {
             for(int i = 0; i < ship.getSize(); i++){
                 if(vertical){
                     grid[x + i][y].setState(PointState.Ship);
-                    location[i] = new Point(x, y);
+                    location[i] = new Point(x + i, y, PointState.Ship);
                 }
                 else {
                     grid[x][y + i].setState(PointState.Ship);
-                    location[i] = new Point(x, y);
+                    location[i] = new Point(x, y + i, PointState.Ship);
                 }
             }
             
