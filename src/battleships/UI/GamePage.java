@@ -28,8 +28,9 @@ public class GamePage extends JPanel{
         menuButton.setFocusPainted(false);
         header.add(menuButton);
         
-        DisplayBoard enemyWaters = new DisplayBoard( roundMng.getEnemyBoard().getBOARD_LENGTH(), roundMng.getEnemyBoard(), false);
-        DisplayBoard playerFleet = new DisplayBoard( roundMng.getPlayerBoard().getBOARD_LENGTH(), roundMng.getPlayerBoard(), true);
+        DisplayBoard enemyWaters = new DisplayBoard(roundMng, false);
+        DisplayBoard playerFleet = new DisplayBoard(roundMng, true);
+        roundMng.getCurrentRound().setDisplayBoards(enemyWaters, playerFleet);
 
         JButton restart = new JButton("Restart");
         restart.addActionListener(new ActionListener() {
