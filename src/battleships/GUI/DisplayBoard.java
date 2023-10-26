@@ -94,6 +94,10 @@ public class DisplayBoard extends JPanel{
                     cell.setEnabled(false);
                 }
                 
+                if(!roundMng.getCurrentRound().isPlayerTurn()){
+                    cell.setEnabled(false);
+                }
+                
                 cell.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
                 cell.setPreferredSize(dim);
                 
