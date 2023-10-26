@@ -5,31 +5,25 @@ package battleships;
  * @author gmt3870
  */
 public class RoundManager {
-    private Board playerBoard;
-    private Board enemyBoard;
+    private final Player player;
+    private final Bot bot;
+    private final Round currentRound;
+    
 
     public RoundManager(){
-        this.playerBoard = new Board();
-        this.enemyBoard = new Board();
-    }
-
-    /**
-     * @return the playerBoard
-     */
-    public Board getPlayerBoard() {
-        return this.playerBoard;
-    }
-
-    /**
-     * @return the enemyBoard
-     */
-    public Board getEnemyBoard() {
-        return this.enemyBoard;
+        this.player = new Player(0);
+        this.bot = new Bot(0);
+        this.currentRound = new Round(this.bot, this.player);
     }
 
     public void restartRound(){
-        this.playerBoard.initialiseBoard();
-        this.enemyBoard.initialiseBoard();
+        this.currentRound.startRound();
     }
 
+    /**
+     * @return the currentRound
+     */
+    public Round getCurrentRound() {
+        return this.currentRound;
+    }       
 }
