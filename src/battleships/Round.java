@@ -1,6 +1,7 @@
 package battleships;
 
-import battleships.UI.DisplayBoard;
+import battleships.GUI.DisplayBoard;
+import javax.swing.JLabel;
 
 /**
  *
@@ -14,6 +15,7 @@ public class Round {
     private boolean playerTurn;
     private final Bot bot;
     private final Player player;
+    private JLabel whoWon = null;
     
     public Round(Bot bot, Player player){
         this.playerTurn = true;
@@ -28,10 +30,17 @@ public class Round {
         this.playerFleet = playerFleet;
     }
     
+    public void setWhoWonLabel(JLabel label){
+        this.whoWon = label;
+    }
+    
     public void startRound(){
         this.getPlayerBoard().initialiseBoard();
         this.getEnemyBoard().initialiseBoard();
         this.playerTurn = true;
+        if(this.whoWon != null){
+            this.whoWon.setText("");
+        }
     }
     
     /**
@@ -42,22 +51,27 @@ public class Round {
         enemyWaters.revalidate();
         enemyWaters.drawBoard();
         
+        if(this.enemyBoard.allShipsSunk()){
+            this.playerTurn = false;
+            this.whoWon.setText("Player Wins!");
+            System.out.println("Player Wins");
+            return;
+        }
+        
         this.playerTurn = false;
         this.bot.takeTurn(playerBoard);
         playerFleet.removeAll();
         playerFleet.revalidate();
         playerFleet.drawBoard();
-        this.playerTurn = true;
-        
-        System.out.println(this.playerBoard.allShipsSunk());
         
         if(this.playerBoard.allShipsSunk()){
             this.playerTurn = false;
-            System.out.println("WINNER");
-        }
-        else if(this.enemyBoard.allShipsSunk()){
+            this.whoWon.setText("Bot Wins!");
             System.out.println("Bot Wins");
+            return;
         }
+        
+        this.playerTurn = true;
     }
     
     /**

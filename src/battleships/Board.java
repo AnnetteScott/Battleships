@@ -64,7 +64,6 @@ public class Board {
      */
     public boolean allShipsSunk() {
         for (Ship ship : fleet) {
-            System.out.println(ship.isSunk());
             if (!ship.isSunk()) {
                 return false;
             }

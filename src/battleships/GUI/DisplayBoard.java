@@ -1,4 +1,4 @@
-package battleships.UI;
+package battleships.GUI;
 
 import battleships.Board;
 import battleships.PointState;
@@ -91,6 +91,10 @@ public class DisplayBoard extends JPanel{
                         
                     });
                 }else {
+                    cell.setEnabled(false);
+                }
+                
+                if(!roundMng.getCurrentRound().isPlayerTurn()){
                     cell.setEnabled(false);
                 }
                 

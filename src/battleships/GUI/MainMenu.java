@@ -1,4 +1,4 @@
-package battleships.UI;
+package battleships.GUI;
 
 import java.awt.*;
 import java.awt.event.*;

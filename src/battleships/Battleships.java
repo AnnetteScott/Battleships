@@ -1,8 +1,8 @@
 package battleships;
 
+import battleships.GUI.*;
 import javax.swing.*;
 import java.awt.*;
-import battleships.UI.*;
 
 /**
  *
