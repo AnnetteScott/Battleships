@@ -14,6 +14,12 @@ public class Point {
         this.y = y;
         this.state = PointState.Empty;
     }
+    
+    public Point(int x, int y, PointState state){
+        this.x = x;
+        this.y = y;
+        this.state = state;
+    }
 
     /**
      * @return the x
