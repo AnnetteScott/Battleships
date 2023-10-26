@@ -58,6 +58,19 @@ public class Board {
         return BOARD_LENGTH;
     }
     
+    /**
+     * Check if all ships are sunk
+     * @return true if all are sunk, false otherwise
+     */
+    public boolean allShipsSunk() {
+        for (Ship ship : fleet) {
+            System.out.println(ship.isSunk());
+            if (!ship.isSunk()) {
+                return false;
+            }
+        }
+        return true;
+    }
     
     public boolean fireShot(int x, int y){
         if (x < 0 || x >= BOARD_LENGTH || y < 0 || y >= BOARD_LENGTH) {            
