@@ -59,4 +59,29 @@ public class Board {
     }
     
     
+    public boolean fireShot(int x, int y){
+        if (x < 0 || x >= BOARD_LENGTH || y < 0 || y >= BOARD_LENGTH) {            
+            return false;
+        }
+        
+        Point point = grid[x][y];
+        
+        if (point.getState().equals(PointState.Hit) || point.getState().equals(PointState.Miss)) {
+            return false;
+        }
+        
+        
+        for(Ship ship : fleet){
+            if(ship.isHit(x, y)){
+                point.setState(PointState.Hit);
+                break;
+            }
+        }
+        
+        if(!point.getState().equals(PointState.Hit)){
+            point.setState(PointState.Miss);
+        }
+        
+        return true;
+    }
 }
