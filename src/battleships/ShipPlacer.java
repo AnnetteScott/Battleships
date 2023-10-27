@@ -25,12 +25,12 @@ public class ShipPlacer {
             
             for(int i = 0; i < ship.getSize(); i++){
                 if(vertical){
-                    grid[x + i][y].setState(PointState.Ship);
-                    location[i] = new Point(x + i, y, PointState.Ship);
-                }
-                else {
                     grid[x][y + i].setState(PointState.Ship);
                     location[i] = new Point(x, y + i, PointState.Ship);
+                }
+                else {
+                    grid[x + i][y].setState(PointState.Ship);
+                    location[i] = new Point(x + i, y, PointState.Ship);
                 }
             }
             
@@ -47,19 +47,24 @@ public class ShipPlacer {
      * @param grid the board grid
      * @return Boolean if valid placement, false otherwise
      */
-    private boolean validPlacement(Ship ship, int x, int y, boolean isVertical, Point[][] grid){
-        if(isVertical && x + ship.getSize() > grid.length){
+    protected boolean validPlacement(Ship ship, int x, int y, boolean isVertical, Point[][] grid){
+        int length = grid.length;
+        if(x > length || x < 0 || y > length || y < 0){
             return false;
         }
-        else if (!isVertical && y + ship.getSize() > grid.length) {
+        
+        if(!isVertical && x + ship.getSize() > length){
+            return false;
+        }
+        else if (isVertical && y + ship.getSize() > length) {
             return false;
         }
         
         for(int i = 0; i < ship.getSize(); i++){
-            if(isVertical && grid[x + i][y].getState().equals(PointState.Ship)){
+            if(isVertical && grid[x][y + i].getState().equals(PointState.Ship)){
                return false;
             }
-            else if(!isVertical && grid[x][y + i].getState().equals(PointState.Ship)){
+            else if(!isVertical && grid[x + i][y].getState().equals(PointState.Ship)){
                 return false;
             }
         }
