@@ -17,14 +17,8 @@ public class Board {
     }
     
     public void initialiseBoard(){
-        this.fleet = new Ship[SHIP_AMOUNT];
-        this.fleet[0] = new Carrier();
-        this.fleet[1] = new Battleship();
-        this.fleet[2] = new Destroyer();
-        this.fleet[3] = new Submarine();
-        this.fleet[4] = new Patrol();
-        
-        this.grid = new Point[BOARD_LENGTH][BOARD_LENGTH];
+        this.fleet = generateShips();
+        this.grid = generateGrid(BOARD_LENGTH);
         
         for (int x = 0; x < BOARD_LENGTH; x++) {
             for (int y = 0; y < BOARD_LENGTH; y++) {
@@ -33,8 +27,32 @@ public class Board {
         }
         
         ShipPlacer placer = new ShipPlacer();
+        if(grid != null && fleet != null){
+            placer.placeShips(grid, fleet);
+        }
+    }
+    
+    public Point[][] generateGrid(int length){
+        Point[][] newGrid = new Point[length][length];
         
-        placer.placeShips(grid, fleet);
+        for (int x = 0; x < BOARD_LENGTH; x++) {
+            for (int y = 0; y < BOARD_LENGTH; y++) {
+                newGrid[x][y] = new Point(x, y);
+            }
+        }
+        
+        return newGrid;
+    }
+    
+    public Ship[] generateShips(){
+        Ship[] ships = new Ship[SHIP_AMOUNT];
+        ships[0] = new Carrier();
+        ships[1] = new Battleship();
+        ships[2] = new Destroyer();
+        ships[3] = new Submarine();
+        ships[4] = new Patrol();
+        
+        return ships;
     }
 
     /**
