@@ -25,13 +25,11 @@ public class Battleships {
 
         MainMenu mainMenu = new MainMenu();
         GamePage gamePage = new GamePage(roundMng);
-        ScorePage scorePage = new ScorePage();
 
         CardLayout cardLayout = new CardLayout();
         JPanel mainPanel = new JPanel(cardLayout);
         mainPanel.add(mainMenu, "Menu");
         mainPanel.add(gamePage, "Game");
-        mainPanel.add(scorePage, "Scores");
 
         cardLayout.show(mainPanel, "Menu");
 
