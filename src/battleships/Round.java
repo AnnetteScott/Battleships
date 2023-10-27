@@ -10,19 +10,21 @@ import javax.swing.JLabel;
 public class Round {
     private DisplayBoard enemyWaters;
     private DisplayBoard playerFleet;
-    private Board playerBoard;
-    private Board enemyBoard;
+    private final Board playerBoard;
+    private final Board enemyBoard;
     private boolean playerTurn;
     private final Bot bot;
     private final Player player;
     private JLabel whoWon = null;
+    private final DBManager DB_Manager;
     
-    public Round(Bot bot, Player player){
+    public Round(Bot bot, Player player, DBManager DB_Manager){
         this.playerTurn = true;
         this.bot = bot;
         this.player = player;
         this.playerBoard = new Board();
         this.enemyBoard = new Board();
+        this.DB_Manager = DB_Manager;
     }
     
     public void setDisplayBoards(DisplayBoard enemyWaters, DisplayBoard playerFleet){
@@ -53,6 +55,7 @@ public class Round {
         
         if(this.enemyBoard.allShipsSunk()){
             this.playerTurn = false;
+            this.player.updateScore(10);
             this.whoWon.setText("Player Wins!");
             System.out.println("Player Wins");
             return;
@@ -66,6 +69,7 @@ public class Round {
         
         if(this.playerBoard.allShipsSunk()){
             this.playerTurn = false;
+            this.bot.updateScore(10);
             this.whoWon.setText("Bot Wins!");
             System.out.println("Bot Wins");
             return;
