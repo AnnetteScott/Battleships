@@ -92,7 +92,6 @@ public final class DBManager {
                 String query = "UPDATE " + this.DB_NAME + "\n" +
                     "SET SCORE = " + data.get(team) + "\n" +
                     "WHERE TEAM = '" + team + "'";
-                System.out.println(query);
                 statement.addBatch(query);
             }
             statement.executeBatch();
