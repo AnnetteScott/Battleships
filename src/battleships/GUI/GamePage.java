@@ -22,6 +22,9 @@ public class GamePage extends JPanel{
         menuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                MainMenu mainMenu = (MainMenu) getParent().getComponent(0);
+                mainMenu.updateScoreLabel(roundMng);
+                        
                 CardLayout cardLayout = (CardLayout) getParent().getLayout();
                 cardLayout.show(getParent(), "Menu");
             }
@@ -31,13 +34,13 @@ public class GamePage extends JPanel{
         
         DisplayBoard enemyWaters = new DisplayBoard(roundMng, false);
         DisplayBoard playerFleet = new DisplayBoard(roundMng, true);
-        roundMng.getCurrentRound().setDisplayBoards(enemyWaters, playerFleet);
+        roundMng.getROUND().setDisplayBoards(enemyWaters, playerFleet);
         
         JButton restart = new JButton("Restart");
         restart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                roundMng.restartRound();
+                roundMng.getROUND().startRound();
                 enemyWaters.removeAll();
                 enemyWaters.revalidate();
                 enemyWaters.drawBoard();
@@ -60,7 +63,7 @@ public class GamePage extends JPanel{
         whoWon.setHorizontalAlignment(JLabel.CENTER);
         whoWon.setFont(new Font("Serif", Font.PLAIN, 30));
         whoWon.setForeground(Color.RED);
-        roundMng.getCurrentRound().setWhoWonLabel(whoWon);
+        roundMng.getROUND().setWhoWonLabel(whoWon);
         
         header.add(buttons, BorderLayout.NORTH);
         header.add(titles, BorderLayout.CENTER);

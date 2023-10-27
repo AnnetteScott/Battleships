@@ -27,9 +27,9 @@ public class DisplayBoard extends JPanel{
     public DisplayBoard(RoundManager roundMng, boolean isPlayer){
         this.roundMng = roundMng;
         if(isPlayer){
-            this.board = roundMng.getCurrentRound().getPlayerBoard();
+            this.board = roundMng.getROUND().getPlayerBoard();
         }else{
-            this.board = roundMng.getCurrentRound().getEnemyBoard();
+            this.board = roundMng.getROUND().getEnemyBoard();
         }
         this.isPlayer = isPlayer;
         this.BOARD_SIZE = this.board.getBOARD_LENGTH();
@@ -81,12 +81,12 @@ public class DisplayBoard extends JPanel{
                     final int row = x;
                     final int col = y;
                     cell.addActionListener((ActionEvent e) -> {
-                        if(!roundMng.getCurrentRound().isPlayerTurn()){
+                        if(!roundMng.getROUND().isPlayerTurn()){
                             return;
                         }
                         boolean validShot = board.fireShot(row, col);
                         if(validShot){
-                            roundMng.getCurrentRound().nextTurn();
+                            roundMng.getROUND().nextTurn();
                         }
                         
                     });
@@ -94,7 +94,7 @@ public class DisplayBoard extends JPanel{
                     cell.setEnabled(false);
                 }
                 
-                if(!roundMng.getCurrentRound().isPlayerTurn()){
+                if(!roundMng.getROUND().isPlayerTurn()){
                     cell.setEnabled(false);
                 }
                 
