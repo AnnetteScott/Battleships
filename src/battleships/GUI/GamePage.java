@@ -22,6 +22,9 @@ public class GamePage extends JPanel{
         menuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                MainMenu mainMenu = (MainMenu) getParent().getComponent(0);
+                mainMenu.updateScoreLabel(roundMng);
+                        
                 CardLayout cardLayout = (CardLayout) getParent().getLayout();
                 cardLayout.show(getParent(), "Menu");
             }
