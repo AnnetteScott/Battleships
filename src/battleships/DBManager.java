@@ -62,4 +62,42 @@ public final class DBManager {
         }
         return false;
     }
+    
+    public HashMap<String, Integer> getAllData(){
+        String query = "SELECT TEAM, SCORE FROM " + this.DB_NAME;
+        ResultSet rs;
+        
+        HashMap<String, Integer> data = new HashMap<>();
+        
+        try{
+            Statement state = conn.createStatement();
+            rs = state.executeQuery(query);
+            while(rs.next()){
+                String team = rs.getString("TEAM");
+                int score = rs.getInt("SCORE");
+                data.put(team, score);
+            }
+            rs.close();
+        }
+        catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+        }
+        
+        return data;
+    }
+    
+    public void updateData(HashMap<String, Integer> data){
+        try {
+            for (String team : data.keySet()) {
+                String query = "UPDATE " + this.DB_NAME + "\n" +
+                    "SET SCORE = " + data.get(team) + "\n" +
+                    "WHERE TEAM = '" + team + "'";
+                System.out.println(query);
+                statement.addBatch(query);
+            }
+            statement.executeBatch();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }
