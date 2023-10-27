@@ -1,6 +1,7 @@
 package battleships;
 
 import battleships.GUI.DisplayBoard;
+import java.util.HashMap;
 import javax.swing.JLabel;
 
 /**
@@ -56,6 +57,7 @@ public class Round {
         if(this.enemyBoard.allShipsSunk()){
             this.playerTurn = false;
             this.player.updateScore(10);
+            updateData();
             this.whoWon.setText("Player Wins!");
             System.out.println("Player Wins");
             return;
@@ -70,12 +72,21 @@ public class Round {
         if(this.playerBoard.allShipsSunk()){
             this.playerTurn = false;
             this.bot.updateScore(10);
+            updateData();
             this.whoWon.setText("Bot Wins!");
             System.out.println("Bot Wins");
             return;
         }
         
         this.playerTurn = true;
+    }
+    
+    private void updateData(){
+        HashMap<String, Integer> data = new HashMap<>();
+        data.put(this.player.getName(), this.player.getScore());
+        data.put(this.bot.getName(), this.bot.getScore());
+        
+        this.DB_Manager.updateData(data);
     }
     
     /**
