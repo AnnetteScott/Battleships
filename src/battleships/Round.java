@@ -1,6 +1,8 @@
 package battleships;
 
-import battleships.UI.DisplayBoard;
+import battleships.GUI.DisplayBoard;
+import java.util.HashMap;
+import javax.swing.JLabel;
 
 /**
  *
@@ -9,18 +11,21 @@ import battleships.UI.DisplayBoard;
 public class Round {
     private DisplayBoard enemyWaters;
     private DisplayBoard playerFleet;
-    private Board playerBoard;
-    private Board enemyBoard;
+    private final Board playerBoard;
+    private final Board enemyBoard;
     private boolean playerTurn;
     private final Bot bot;
     private final Player player;
+    private JLabel whoWon = null;
+    private final DBManager DB_Manager;
     
-    public Round(Bot bot, Player player){
+    public Round(Bot bot, Player player, DBManager DB_Manager){
         this.playerTurn = true;
         this.bot = bot;
         this.player = player;
         this.playerBoard = new Board();
         this.enemyBoard = new Board();
+        this.DB_Manager = DB_Manager;
     }
     
     public void setDisplayBoards(DisplayBoard enemyWaters, DisplayBoard playerFleet){
@@ -28,10 +33,17 @@ public class Round {
         this.playerFleet = playerFleet;
     }
     
+    public void setWhoWonLabel(JLabel label){
+        this.whoWon = label;
+    }
+    
     public void startRound(){
         this.getPlayerBoard().initialiseBoard();
         this.getEnemyBoard().initialiseBoard();
         this.playerTurn = true;
+        if(this.whoWon != null){
+            this.whoWon.setText("");
+        }
     }
     
     /**
@@ -42,22 +54,39 @@ public class Round {
         enemyWaters.revalidate();
         enemyWaters.drawBoard();
         
+        if(this.enemyBoard.allShipsSunk()){
+            this.playerTurn = false;
+            this.player.updateScore(10);
+            updateData();
+            this.whoWon.setText("Player Wins!");
+            System.out.println("Player Wins");
+            return;
+        }
+        
         this.playerTurn = false;
         this.bot.takeTurn(playerBoard);
         playerFleet.removeAll();
         playerFleet.revalidate();
         playerFleet.drawBoard();
-        this.playerTurn = true;
-        
-        System.out.println(this.playerBoard.allShipsSunk());
         
         if(this.playerBoard.allShipsSunk()){
             this.playerTurn = false;
-            System.out.println("WINNER");
-        }
-        else if(this.enemyBoard.allShipsSunk()){
+            this.bot.updateScore(10);
+            updateData();
+            this.whoWon.setText("Bot Wins!");
             System.out.println("Bot Wins");
+            return;
         }
+        
+        this.playerTurn = true;
+    }
+    
+    private void updateData(){
+        HashMap<String, Integer> data = new HashMap<>();
+        data.put(this.player.getName(), this.player.getScore());
+        data.put(this.bot.getName(), this.bot.getScore());
+        
+        this.DB_Manager.updateData(data);
     }
     
     /**

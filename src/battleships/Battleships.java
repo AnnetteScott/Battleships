@@ -1,8 +1,8 @@
 package battleships;
 
+import battleships.GUI.*;
 import javax.swing.*;
 import java.awt.*;
-import battleships.UI.*;
 
 /**
  *
@@ -14,24 +14,24 @@ public class Battleships {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        DBManager dbMng = new DBManager();
+        RoundManager roundMng = new RoundManager(dbMng);
+        
         JFrame frame = new JFrame();
         frame.setResizable(false);
         frame.setTitle("Battleships");
         frame.setSize(1200, 700);
         frame.setLocation(1500, 100);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		RoundManager roundMng = new RoundManager();
-
-        MainMenu mainMenu = new MainMenu();
+        
+        
+        MainMenu mainMenu = new MainMenu(roundMng);
         GamePage gamePage = new GamePage(roundMng);
-        ScorePage scorePage = new ScorePage();
 
         CardLayout cardLayout = new CardLayout();
         JPanel mainPanel = new JPanel(cardLayout);
         mainPanel.add(mainMenu, "Menu");
         mainPanel.add(gamePage, "Game");
-        mainPanel.add(scorePage, "Scores");
 
         cardLayout.show(mainPanel, "Menu");
 
