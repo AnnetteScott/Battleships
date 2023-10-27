@@ -11,6 +11,25 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/GUI/GamePage.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/GUI/MainMenu.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/Ship.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/RoundManager.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/Round.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/Battleships.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/Ships/Carrier.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/Ships/Patrol.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/GUI/DisplayBoard.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/PointState.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/Player.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/Point.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/ShipPlacer.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/DBManager.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/Bot.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/Ships/Battleship.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/Board.java</file>
+            <file>file:/C:/Users/Annet/OneDrive%20-%20AUT%20University/Software%20Project%202/Battleships/src/battleships/Team.java</file>
+        </group>
     </open-files>
 </project-private>
