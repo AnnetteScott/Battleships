@@ -35,8 +35,8 @@ public class Board {
     public Point[][] generateGrid(int length){
         Point[][] newGrid = new Point[length][length];
         
-        for (int x = 0; x < BOARD_LENGTH; x++) {
-            for (int y = 0; y < BOARD_LENGTH; y++) {
+        for (int x = 0; x < length; x++) {
+            for (int y = 0; y < length; y++) {
                 newGrid[x][y] = new Point(x, y);
             }
         }
