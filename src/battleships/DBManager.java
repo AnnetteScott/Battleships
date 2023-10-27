@@ -3,7 +3,7 @@ package battleships;
 import java.sql.*;
 import java.util.HashMap;
 /**
- *
+ * Database manager
  * @author gmt3870
  */
 public final class DBManager {
@@ -18,6 +18,9 @@ public final class DBManager {
         establishConnection();
     }
     
+    /**
+     * Create a connection with the database
+     */
     public void establishConnection() {
         if (this.conn == null) {
             try {
@@ -31,7 +34,10 @@ public final class DBManager {
             }
         }
     }
-        
+    
+    /**
+     * Create the database table if it doesn't exist
+     */
     private void createTable(){
         if(!this.checkExistedTable()){
             try {
@@ -43,6 +49,10 @@ public final class DBManager {
         }
     }
     
+    /**
+     * Check if the table exists within the database
+     * @return true if table exists, false otherwise
+     */
     public boolean checkExistedTable() {
         try {
             DatabaseMetaData dbmd = this.conn.getMetaData();
@@ -63,6 +73,10 @@ public final class DBManager {
         return false;
     }
     
+    /**
+     * Read all the data within the database
+     * @return HashMap<String, Integer> of the data
+     */
     public HashMap<String, Integer> getAllData(){
         String query = "SELECT TEAM, SCORE FROM " + this.DB_NAME;
         ResultSet rs;
@@ -86,6 +100,10 @@ public final class DBManager {
         return data;
     }
     
+    /**
+     * Update the data in the database
+     * @param data HashMap<String, Integer> of the data
+     */
     public void updateData(HashMap<String, Integer> data){
         try {
             for (String team : data.keySet()) {

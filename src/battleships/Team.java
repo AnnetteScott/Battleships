@@ -1,7 +1,7 @@
 package battleships;
 
 /**
- *
+ * Abstract class to provide basis for teams
  * @author gmt3870
  */
 public abstract class Team {

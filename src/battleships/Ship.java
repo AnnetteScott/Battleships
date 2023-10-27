@@ -1,7 +1,7 @@
 package battleships;
 
 /**
- *
+ * Abstract class to provide template for ship types
  * @author gmt3870
  */
 public abstract class Ship {
@@ -52,7 +52,7 @@ public abstract class Ship {
     
     /**
      * Whether the ship has been sunk
-     * @return Boolean
+     * @return true if ship has been sunk, false otherwise
      */
     public boolean isSunk(){
         boolean sunk = true;

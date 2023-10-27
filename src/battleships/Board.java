@@ -3,7 +3,7 @@ package battleships;
 import battleships.Ships.*;
 
 /**
- *
+ * Single matrix that holds a fleet of ships
  * @author gmt3870
  */
 public class Board {
@@ -16,6 +16,9 @@ public class Board {
         initialiseBoard();
     }
     
+    /**
+     * Create the board and place ships
+     */
     public void initialiseBoard(){
         this.fleet = generateShips();
         this.grid = generateGrid(BOARD_LENGTH);
@@ -32,6 +35,11 @@ public class Board {
         }
     }
     
+    /**
+     * Generate the board
+     * @param length of the board
+     * @return Point[][]
+     */
     public Point[][] generateGrid(int length){
         Point[][] newGrid = new Point[length][length];
         
@@ -44,6 +52,10 @@ public class Board {
         return newGrid;
     }
     
+    /**
+     * Create a ship array
+     * @return Ship[]
+     */
     public Ship[] generateShips(){
         Ship[] ships = new Ship[SHIP_AMOUNT];
         ships[0] = new Carrier();
@@ -89,6 +101,12 @@ public class Board {
         return true;
     }
     
+    /**
+     * Fire a shot at the grid and check if a ship was hit
+     * @param x coordinate
+     * @param y coordinate
+     * @return false if invalid shot, true otherwise
+     */
     public boolean fireShot(int x, int y){
         if (x < 0 || x >= BOARD_LENGTH || y < 0 || y >= BOARD_LENGTH) {            
             return false;

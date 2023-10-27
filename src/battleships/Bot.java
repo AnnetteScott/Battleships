@@ -3,7 +3,7 @@ package battleships;
 import java.util.Random;
 
 /**
- *
+ * Bot with simple take turn functionality
  * @author gmt3870
  */
 public class Bot extends Team{
@@ -15,6 +15,10 @@ public class Bot extends Team{
         this.random = new Random();
     }
     
+    /**
+     * Randomly fire a shot at a board, only stopping when a valid shot was fired
+     * @param board 
+     */
     public void takeTurn(Board board){
         boolean valid = false;
         int x;

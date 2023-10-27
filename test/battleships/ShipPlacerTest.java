@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Test the vital ship placing function
  * @author gmt3870
  */
 public class ShipPlacerTest {

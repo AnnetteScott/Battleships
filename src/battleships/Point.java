@@ -1,7 +1,7 @@
 package battleships;
 
 /**
- *
+ * Point class for use within a grid or ship location data
  * @author gmt3870
  */
 public class Point {

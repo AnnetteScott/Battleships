@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- *
+ * Main entry point for application
  * @author gmt3870
  */
 public class Battleships {
@@ -14,9 +14,11 @@ public class Battleships {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //Init managers
         DBManager dbMng = new DBManager();
         RoundManager roundMng = new RoundManager(dbMng);
         
+        //Create and show frame for GUI
         JFrame frame = new JFrame();
         frame.setResizable(false);
         frame.setTitle("Battleships");

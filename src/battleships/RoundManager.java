@@ -3,7 +3,8 @@ package battleships;
 import java.util.HashMap;
 
 /**
- *
+ * Allows for interactions between other classes and the Round class
+ * Initialize team members
  * @author gmt3870
  */
 public class RoundManager {
@@ -21,8 +22,6 @@ public class RoundManager {
         this.ROUND = new Round(this.getBOT(), this.getPLAYER(), this.DB_MANAGER);
     }
     
-    
-
     /**
      * @return the currentRound
      */

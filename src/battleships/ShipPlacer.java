@@ -3,11 +3,17 @@ package battleships;
 import java.util.Random;
 
 /**
- *
+ * Place ships on the grid
  * @author gmt3870
  */
 public class ShipPlacer {
     
+    /**
+     * Place ships on the grid, looping through different coordinates and 
+     * orientation until 
+     * @param grid
+     * @param fleet 
+     */
     public void placeShips(Point[][] grid, Ship[] fleet){
         Random random = new Random();
         for(Ship ship : fleet){

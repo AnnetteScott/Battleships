@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
+ * Main menu GUI
  * @author gmt3870
  */
 public class MainMenu extends JPanel {

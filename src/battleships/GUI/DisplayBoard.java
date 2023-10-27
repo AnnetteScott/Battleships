@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
 /**
- *
+ * Creates a JPanel and adds buttons to form a square grid
  * @author gmt3870
  */
 public class DisplayBoard extends JPanel{

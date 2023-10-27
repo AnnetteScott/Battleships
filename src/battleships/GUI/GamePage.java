@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
+ * Game page GUI
  * @author gmt3870
  */
 public class GamePage extends JPanel{
