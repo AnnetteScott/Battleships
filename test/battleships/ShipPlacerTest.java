@@ -46,6 +46,7 @@ public class ShipPlacerTest {
         Ship ship = new Carrier();
         ShipPlacer instance = new ShipPlacer();
         
+        //Test out of bound x
         int x = 11;
         int y = 0;
         boolean isVertical = false;
@@ -53,6 +54,7 @@ public class ShipPlacerTest {
         boolean result = instance.validPlacement(ship, x, y, isVertical, grid);
         assertEquals(expResult, result);
         
+        //Test out of bound y
         x = 5;
         y = -2;
         isVertical = true;
@@ -60,6 +62,7 @@ public class ShipPlacerTest {
         result = instance.validPlacement(ship, x, y, isVertical, grid);
         assertEquals(expResult, result);
         
+        //Provide valid ship coordinates
         x = 5;
         y = 5;
         isVertical = true;
@@ -67,6 +70,7 @@ public class ShipPlacerTest {
         result = instance.validPlacement(ship, x, y, isVertical, grid);
         assertEquals(expResult, result);
         
+        //Provide invalid shot coorindates
         x = 5;
         y = 9;
         isVertical = true;
@@ -74,6 +78,7 @@ public class ShipPlacerTest {
         result = instance.validPlacement(ship, x, y, isVertical, grid);
         assertEquals(expResult, result);
         
+        //Provide valid shot cooridinates
         x = 5;
         y = 9;
         isVertical = false;

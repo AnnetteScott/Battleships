@@ -37,17 +37,20 @@ public class BoardTest {
      */
     @Test
     public void testAllShipsSunk() {
+        //Test if all the ships are not sunk
         Board instance = new Board();
         boolean expResult = false;
         boolean result = instance.allShipsSunk();
         assertEquals(expResult, result);
         
+        //Sink the ships
         for(Ship ship : instance.getFleet()){
             for(Point point : ship.getLocation()){
                 point.setState(PointState.Hit);
             }
         }
         
+        //Test if all the ships are sunk
         expResult = true;
         result = instance.allShipsSunk();
         assertEquals(expResult, result);
@@ -60,24 +63,29 @@ public class BoardTest {
     public void testFireShot() {
         Board instance = new Board();
         
+        //Test valid shot coordinates
         int x = 0;
         int y = 0;
         boolean expResult = true;
         boolean result = instance.fireShot(x, y);
         assertEquals(expResult, result);
         
+        //Test valid shot coordinates but should now return false as the point 
+        //has already been shot at
         x = 0;
         y = 0;
         expResult = false;
         result = instance.fireShot(x, y);
         assertEquals(expResult, result);
         
+        //Test out of bound x
         x = 11;
         y = 0;
         expResult = false;
         result = instance.fireShot(x, y);
         assertEquals(expResult, result);
         
+        //Test out of bound x and y
         x = -3;
         y = 20;
         expResult = false;
